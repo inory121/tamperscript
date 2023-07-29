@@ -2,13 +2,13 @@
 // @name         全自动风纪委(改)
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
-// @supportURL   https://github.com/ZiuChen/userscript
-// @version      0.7.1
-// @author       ZiuChen
+// @supportURL   https://github.com/inory121/tamperscript
+// @version      0.7.2
+// @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
 // @icon         https://fastly.jsdelivr.net/gh/ZiuChen/ZiuChen@main/avatar.jpg
-// @require     https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js
+// @require      https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js
 // @grant        GM_registerMenuCommand
 // @license      MIT
 // ==/UserScript==
