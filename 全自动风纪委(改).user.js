@@ -8,7 +8,7 @@
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
 // @icon         https://fastly.jsdelivr.net/gh/ZiuChen/ZiuChen@main/avatar.jpg
-// @require      https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js
+// @require     https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js
 // @grant        GM_registerMenuCommand
 // @license      MIT
 // ==/UserScript==
@@ -16,11 +16,8 @@
 /* 原理：DOM操作模拟点击，不会被检测异常 */
 /* 使用方法：进入第一个案件后按下Enter，后续无需人工干预自动完成所有风纪委任务 */
 /* 仅供学习交流使用，安装后请于24小时内删除 */
-(function () {
+$(function () {
   'use strict';
-  GM_registerMenuCommand('⚙设置', ()=>{
-    swal("Good job!", "You clicked the button!", "success");
-  })
   const isBLPage = (window.location.href.toString().indexOf('https://www.bilibili.com/') != -1)
   const date = new Date().getDate()
   function SetDateStore() {
@@ -49,7 +46,7 @@
     })
   }
 
-  const btnClick = (selector, index = 0) => document.querySelectorAll(selector)[index]?.click()
+  const btnClick = (selector, index = 0) => $(selector)[index]?.click()
 
   const callBackFn = async () => {
     // TODO: 添加跳出递归的条件
@@ -65,7 +62,7 @@
       .then(() => callBackFn())
       .catch((err) => confirm(`[全自动风纪委] 出错: ${err}, 点击确定刷新`) && location.reload())
   }
- 
+
   if (CompareDateStore()) {
     return
   }
@@ -73,14 +70,13 @@
     SetDateStore()
     window.open('https://www.bilibili.com/judgement')
   }
-  window.addEventListener('load', function () {
-    let text = document.querySelectorAll('.item-button')[0]?.innerText
-    if (text === '投票次数已用完' || text === '无新任务') {
-      console.log('[风纪自动投票]没有众议次数');
-      return
-    } else if (text === '开始众议') {
-      btnClick('.item-button button', [0])
-      callBackFn()
-    }
-  })
-})()
+
+  let text = $('.item-button')[0]?.innerText
+  if (text === '投票次数已用完' || text === '无新任务') {
+    console.log('[风纪自动投票]没有众议次数');
+    return
+  } else if (text === '开始众议') {
+    btnClick('.item-button button', [0])
+    callBackFn()
+  }
+})
