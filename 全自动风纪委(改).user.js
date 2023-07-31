@@ -7,7 +7,7 @@
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
-// @icon         https://fastly.jsdelivr.net/gh/ZiuChen/ZiuChen@main/avatar.jpg
+// @icon         https://raw.githubusercontent.com/the1812/Bilibili-Evolved/preview/images/logo-small.png
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js
 // @grant        GM_registerMenuCommand
 // @license      MIT
