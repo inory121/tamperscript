@@ -14,7 +14,7 @@
 // ==/UserScript==
 
 /* 原理：DOM操作模拟点击，不会被检测异常 */
-/* 使用方法：自行修改@match网址或者手动打开风纪页面，然后解放双手(每天运行一次，如果想再次运行，删除localStorage里面的'BL-SCRIPT-LAST-RUN') */
+/* 使用方法：自行修改@match网址或者手动打开风纪页面，然后解放双手(每天运行一次，如果想再次运行，点击油猴本脚本设置选项或者手动删除localStorage里面的'BL-SCRIPT-LAST-RUN') */
 /* 仅供学习交流使用，安装后请于24小时内删除 */
 $(function () {
   'use strict';
