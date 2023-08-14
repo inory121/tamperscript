@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.3
+// @version      0.7.4
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
@@ -18,6 +18,7 @@
 /* 仅供学习交流使用，安装后请于24小时内删除 */
 $(function () {
   'use strict';
+  GM_registerMenuCommand('清除本地存储',removeDateStore)
   const isBLPage = (window.location.href.toString().indexOf('https://www.bilibili.com/') != -1)
   const date = new Date().getDate()
   function SetDateStore() {
@@ -25,6 +26,10 @@ $(function () {
   }
   function CompareDateStore() {
     return localStorage.getItem('BL-SCRIPT-LAST-RUN') == date
+  }
+  function removeDateStore(){
+    localStorage.removeItem('BL-SCRIPT-LAST-RUN')
+    document.location.reload()
   }
 
   const CONFIG = {
