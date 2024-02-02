@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.4
+// @version      0.7.5
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
@@ -77,11 +77,14 @@ $(function () {
   }
 
   let text = $('.item-button')[0]?.innerText
-  if (text === '投票次数已用完' || text === '无新任务') {
+  if (text === '投票次数已用完' || text === '无新任务'|| text === '审核中') {
     console.log('[风纪自动投票]没有众议次数');
     return
   } else if (text === '开始众议') {
     btnClick('.item-button button', [0])
     callBackFn()
+  }else if(text === '申请连任'){
+    btnClick('.item-button button', [0])
+    return
   }
 })
