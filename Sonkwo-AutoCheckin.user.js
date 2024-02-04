@@ -10,8 +10,7 @@
 // @icon         https://www.sonkwo.cn/favicon.ico
 // @run-at       document-end
 // @grant        GM_registerMenuCommand
-// @downloadURL https://update.greasyfork.org/scripts/486321/Sonkwo-AutoCheckin.user.js
-// @updateURL https://update.greasyfork.org/scripts/486321/Sonkwo-AutoCheckin.meta.js
+// @updateURL    https://github.com/inory121/tamperscript/raw/main/Sonkwo-AutoCheckin.js
 // ==/UserScript==
 
 
