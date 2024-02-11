@@ -19,19 +19,29 @@
 $(function () {
   'use strict';
   GM_registerMenuCommand('清除本地存储', removeDateStore)
-  GM_registerMenuCommand('重新运行脚本', judge)
+  GM_registerMenuCommand('重新运行脚本', rerun)
   GM_registerMenuCommand('打开风纪页面', openJudgePage)
-  function openJudgePage(){
+  
+  function openJudgePage() {
     window.open('https://www.bilibili.com/judgement')
   }
+
+  function rerun() {
+    localStorage.removeItem('BL-SCRIPT-LAST-RUN')
+    judge()
+  }
+
   const isBLPage = (window.location.href.toString().indexOf('https://www.bilibili.com/') != -1)
   const date = new Date().getDate()
+
   function SetDateStore() {
     localStorage.setItem('BL-SCRIPT-LAST-RUN', date)
   }
+
   function CompareDateStore() {
     return localStorage.getItem('BL-SCRIPT-LAST-RUN') == date
   }
+
   function removeDateStore() {
     localStorage.removeItem('BL-SCRIPT-LAST-RUN')
     document.location.reload()
@@ -43,16 +53,12 @@ $(function () {
     是否匿名: true // true匿名 | false非匿名
   }
 
-  const randInt = (min, max) => {
-    return parseInt(Math.random() * (max - min + 1) + min, 10)
-  }
+  const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   const sleep = async (timeout) => {
     timeout += randInt(500, 1000) // 随机延迟
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve()
-      }, timeout)
+      setTimeout(resolve, timeout)
     })
   }
 
@@ -62,9 +68,9 @@ $(function () {
     // TODO: 添加跳出递归的条件
     return await sleep(2000)
       .then(() => {
-        btnClick('.vote-btns .btn-group button', [CONFIG['是否合适']])
-        btnClick('.vote-btns .will-you-watch button', [CONFIG['会观看吗']])
-        CONFIG['是否匿名'] && btnClick('.vote-anonymous .v-check-box__label')
+        btnClick('.vote-btns .btn-group button', CONFIG['是否合适'])
+        btnClick('.vote-btns .will-you-watch button', CONFIG['会观看吗'])
+        btnClick('.vote-anonymous .v-check-box__label', CONFIG['是否匿名'])
       })
       .then(() => btnClick('.vote-submit button')) // 提交
       .then(() => sleep(5000))
@@ -72,8 +78,6 @@ $(function () {
       .then(() => callBackFn())
       .catch((err) => confirm(`[全自动风纪委] 出错: ${err}, 点击确定刷新`) && location.reload())
   }
-
-
 
   function judge() {
     if (CompareDateStore()) {
@@ -96,6 +100,6 @@ $(function () {
         return
       }
     }
-    judge()
   }
+  judge()
 })
