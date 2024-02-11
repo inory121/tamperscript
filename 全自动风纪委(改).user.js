@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.5
+// @version      0.7.6
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        *://*/*
