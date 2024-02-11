@@ -6,7 +6,7 @@
 // @version      0.7.7
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
-// @match        *://*/*
+// @match        https://limestart.cn/
 // @icon         https://raw.githubusercontent.com/the1812/Bilibili-Evolved/preview/images/logo-small.png
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js
 // @grant        GM_registerMenuCommand
@@ -14,7 +14,7 @@
 // ==/UserScript==
 
 /* 原理：DOM操作模拟点击，不会被检测异常 */
-/* 使用方法：手动打开风纪页面或者点击"打开风纪页面"选项，然后解放双手(每天运行一次，如果想再次运行，点击油猴本脚本设置选项的"清除本地存储"或者手动删除localStorage里面的'BL-SCRIPT-LAST-RUN')，如果已经在风纪页面但没有反应，点击油猴"重新运行脚本"选项" */
+/* 使用方法：修改@match匹配你自己的浏览器首页或者手动打开风纪页面(https://www.bilibili.com/judgement)或者点击"打开风纪页面"选项，然后解放双手(每天运行一次，如果想再次运行，点击油猴本脚本设置选项的"清除本地存储"或者手动删除localStorage里面的'BL-SCRIPT-LAST-RUN')，如果已经在风纪页面但没有反应，点击油猴"重新运行脚本"选项" */
 /* 仅供学习交流使用，安装后请于24小时内删除 */
 $(function () {
   'use strict';
