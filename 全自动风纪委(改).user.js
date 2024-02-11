@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.6
+// @version      0.7.7
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        *://*/*
@@ -21,7 +21,7 @@ $(function () {
   GM_registerMenuCommand('清除本地存储', removeDateStore)
   GM_registerMenuCommand('重新运行脚本', rerun)
   GM_registerMenuCommand('打开风纪页面', openJudgePage)
-  
+
   function openJudgePage() {
     window.open('https://www.bilibili.com/judgement')
   }
