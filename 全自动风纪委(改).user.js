@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.7
+// @version      0.7.8
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
@@ -74,7 +74,15 @@ $(function () {
       })
       .then(() => btnClick('.vote-submit button')) // 提交
       .then(() => sleep(5000))
-      .then(() => btnClick('.vote-result button')) // 跳转下一题
+      .then(() => {
+        if ($('.vote-result button')) {
+          btnClick('.vote-result button')
+        } else {
+          localStorage.removeItem('BL-SCRIPT-LAST-RUN')
+          window.location.href = 'https://www.bilibili.com/judgement'
+        }
+
+      }) // 跳转下一题
       .then(() => callBackFn())
       .catch((err) => confirm(`[全自动风纪委] 出错: ${err}, 点击确定刷新`) && location.reload())
   }
