@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.8
+// @version      0.7.9
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://limestart.cn/
@@ -44,7 +44,7 @@ $(function () {
 
   function removeDateStore() {
     localStorage.removeItem('BL-SCRIPT-LAST-RUN')
-    document.location.reload()
+    window.location.href = 'https://www.bilibili.com/judgement'
   }
 
   const CONFIG = {
@@ -78,8 +78,7 @@ $(function () {
         if ($('.vote-result button')) {
           btnClick('.vote-result button')
         } else {
-          localStorage.removeItem('BL-SCRIPT-LAST-RUN')
-          window.location.href = 'https://www.bilibili.com/judgement'
+          removeDateStore()
         }
 
       }) // 跳转下一题
