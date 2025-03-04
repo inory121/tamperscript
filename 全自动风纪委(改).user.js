@@ -3,10 +3,10 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7.9
+// @version      0.7.11
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
-// @match        https://limestart.cn/
+// @match        https://www.limestart.cn/
 // @icon         https://raw.githubusercontent.com/the1812/Bilibili-Evolved/preview/images/logo-small.png
 // @require      https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js
 // @grant        GM_registerMenuCommand
@@ -65,6 +65,9 @@ $(function () {
   const btnClick = (selector, index = 0) => $(selector)[index]?.click()
 
   const callBackFn = async () => {
+      if($('.b-tag').text=='已结束'){
+      removeDateStore()
+    }
     // TODO: 添加跳出递归的条件
     return await sleep(2000)
       .then(() => {
