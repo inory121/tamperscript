@@ -3,7 +3,7 @@
 // @namespace    https://github.com/inory121/tamperscript
 // @version      1.0
 // @match        https://www.lspsp.me/bonus*
-// @require      https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js
+// @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @grant        GM_registerMenuCommand
 // @grant        GM_notification
 // @grant        GM_getValue
