@@ -14,6 +14,7 @@
 // @match        https://www.lspsp.me/bonus
 // @icon         https://static.lspsp.cn/global/other/v3.png
 // @run-at       document-start
+// @license      MIT
 // ==/UserScript==
 
 unsafeWindow.alert = function (msg) {
@@ -38,15 +39,15 @@ function closeBtn() {
   }
 }
 $(function () {
-    "use strict"
-    GM_registerMenuCommand("重新运行脚本", getGame);
-    function getGame() {
+  "use strict"
+  GM_registerMenuCommand("重新运行脚本", getGame);
+  function getGame() {
     var activeBtns = document.querySelectorAll('.links>button:not([disabled]):not(.owned)')
     if (activeBtns.length != 0) {
       console.log(`【LSP+1】可领取游戏数量：${activeBtns.length}`)
-            GM_notification({
-                title: 'LSP有信息！！',
-                text: '游戏可以领取啦！！！！',
+      GM_notification({
+        title: 'LSP有信息！！',
+        text: '游戏可以领取啦！！！！',
         image: 'https://static.lspsp.cn/global/other/v3.png',
         timeout: 4000,
       })
@@ -62,7 +63,7 @@ $(function () {
             confirmBtn.click();
             clearInterval(interval);
             setTimeout(() => processBtns(btns, idx + 1), 500); // 递归处理下一个
-                } else {
+          } else {
             tried++;
             if (tried >= maxTries) {
               console.log('【LSP+1】没有领取次数！！！');
