@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.3
 // @description  带可恢复最小化面板的自动点击工具
-// @author       YourName
+// @author       hiiro
 // @match        https://www.steamgifts.com/*
 // @grant        GM_addStyle
 // ==/UserScript==
