@@ -3,10 +3,10 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.9
+// @version      0.7
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
-// @match        *://*/*
+// @match        https://www.limestart.cn/*
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @icon         https://raw.githubusercontent.com/the1812/Bilibili-Evolved/preview/images/logo-small.png
 // @grant        GM_registerMenuCommand
@@ -18,7 +18,7 @@
 /* 仅供学习交流使用，安装后请于24小时内删除 */
 $(function () {
   'use strict';
-
+  
   // 添加菜单项
   GM_registerMenuCommand('清除本地存储', removeDateStore);
   GM_registerMenuCommand('重新运行脚本', rerun);
@@ -28,7 +28,7 @@ $(function () {
   const currentSite = window.location.hostname;
   const isBLPage = (currentSite === 'www.bilibili.com');
   const date = new Date().getDate();
-
+  
   function openJudgePage() {
     window.open('https://www.bilibili.com/judgement');
   }
@@ -77,7 +77,7 @@ $(function () {
   const btnClick = (selector, index = 0) => $(selector)[index]?.click()
 
   const callBackFn = async () => {
-    if ($('.b-tag').text == '已结束') {
+      if($('.b-tag').text=='已结束'){
       removeDateStore()
     }
     // TODO: 添加跳出递归的条件
