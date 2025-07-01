@@ -3,7 +3,7 @@
 // @description  进入评价界面自动开始提交风纪委评价
 // @namespace    http://tampermonkey.net
 // @supportURL   https://github.com/inory121/tamperscript
-// @version      0.7
+// @version      1.0
 // @author       hiiro
 // @match        https://www.bilibili.com/judgement*
 // @match        https://www.limestart.cn/*
@@ -18,7 +18,7 @@
 /* 仅供学习交流使用，安装后请于24小时内删除 */
 $(function () {
   'use strict';
-  
+
   // 添加菜单项
   GM_registerMenuCommand('清除本地存储', removeDateStore);
   GM_registerMenuCommand('重新运行脚本', rerun);
@@ -28,7 +28,7 @@ $(function () {
   const currentSite = window.location.hostname;
   const isBLPage = (currentSite === 'www.bilibili.com');
   const date = new Date().getDate();
-  
+
   function openJudgePage() {
     window.open('https://www.bilibili.com/judgement');
   }
@@ -77,29 +77,25 @@ $(function () {
   const btnClick = (selector, index = 0) => $(selector)[index]?.click()
 
   const callBackFn = async () => {
-      if($('.b-tag').text=='已结束'){
-      removeDateStore()
+    if ($('.b-tag').text() == '已结束') {
+      removeDateStore();
+      return;
     }
-    // TODO: 添加跳出递归的条件
-    return await sleep(2000)
-      .then(() => {
-        btnClick('.vote-btns .btn-group button', CONFIG['是否合适'])
-        btnClick('.vote-btns .will-you-watch button', CONFIG['会观看吗'])
-        btnClick('.vote-anonymous .v-check-box__label', CONFIG['是否匿名'])
-      })
-      .then(() => btnClick('.vote-submit button')) // 提交
-      .then(() => sleep(5000))
-      .then(() => {
-        if ($('.vote-result button')) {
-          btnClick('.vote-result button')
-        } else {
-          removeDateStore()
-        }
-
-      }) // 跳转下一题
-      .then(() => callBackFn())
-      .catch((err) => confirm(`[全自动风纪委] 出错: ${err}, 点击确定刷新`) && location.reload())
-  }
+    // TODO: 添加跳出递归的条件，比如最大次数
+    await sleep(2000);
+    btnClick('.vote-btns .btn-group button', CONFIG['是否合适']);
+    btnClick('.vote-btns .will-you-watch button', CONFIG['会观看吗']);
+    btnClick('.vote-anonymous .v-check-box__label', CONFIG['是否匿名']);
+    btnClick('.vote-submit button');
+    await sleep(5000);
+    if ($('.vote-result button').length) {
+      btnClick('.vote-result button');
+    } else {
+      removeDateStore();
+      return;
+    }
+    return callBackFn();
+  };
 
   function judge() {
     if (CompareDateStore()) {
