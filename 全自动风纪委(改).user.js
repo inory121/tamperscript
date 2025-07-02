@@ -52,7 +52,7 @@ $(function () {
 
   function removeDateStore() {
     localStorage.removeItem('BL-SCRIPT-LAST-RUN');
-    if (isBLPage) {
+    if (!isBLPage) {
       window.location.href = 'https://www.bilibili.com/judgement';
     } else {
       console.log('当前网站不支持自动评价功能');
